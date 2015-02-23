@@ -1,14 +1,16 @@
 package jp.koushin_lawfirm.www.core;
 
-import jp.koushin_lawfirm.www.block.BlockTNTNuke;
-import jp.koushin_lawfirm.www.entity.Entity6Char;
-import jp.koushin_lawfirm.www.entity.EntityLawyer;
-import jp.koushin_lawfirm.www.item.Item6Char;
+import jp.koushin_lawfirm.www.block.*;
+import jp.koushin_lawfirm.www.entity.*;
+import jp.koushin_lawfirm.www.item.*;
 import net.minecraft.block.BlockDispenser;
+import net.minecraft.dispenser.BehaviorProjectileDispense;
 import net.minecraft.dispenser.IBehaviorDispenseItem;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.dispenser.IPosition;
+import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.projectile.EntityEgg;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -21,6 +23,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid = KoushinCore.MODID, version = KoushinCore.VERSION)
 public class KoushinCore {
@@ -32,8 +35,9 @@ public class KoushinCore {
 	public static CommonProxy proxy;
 
 	// Items&Blocks
-	private static Item6Char item6Char;
-	private static BlockTNTNuke blockTNTNuke;
+	public static Item6Char item6Char;
+
+	public static BlockTNTNuke blockTNTNuke;
 
 	// 以下init類
 	@EventHandler
@@ -44,6 +48,7 @@ public class KoushinCore {
 
 		item6Char = new Item6Char();
 		GameRegistry.registerItem(item6Char, "6Char");
+
 		proxy.preInit(event);
 
 	}
@@ -56,6 +61,17 @@ public class KoushinCore {
 				this, 80, 1, true);
 		EntityRegistry.registerModEntity(Entity6Char.class, "6char", 201, this,
 				128, 5, true);
+
+		// Dispenser登録
+		BlockDispenser.dispenseBehaviorRegistry.putObject(
+				KoushinCore.item6Char, new BehaviorProjectileDispense() {
+
+					protected IProjectile getProjectileEntity(World p_82499_1_,
+							IPosition p_82499_2_) {
+						return new Entity6Char(p_82499_1_, p_82499_2_.getX(),
+								p_82499_2_.getY(), p_82499_2_.getZ());
+					}
+				});
 
 		// 諸Recipe
 		GameRegistry.addShapelessRecipe(new ItemStack(item6Char),
