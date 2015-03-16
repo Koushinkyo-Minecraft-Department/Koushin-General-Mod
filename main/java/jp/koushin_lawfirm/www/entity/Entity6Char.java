@@ -31,12 +31,22 @@ public class Entity6Char extends EntityThrowable {
 
 		if (!this.worldObj.isRemote) {
 			byte b0 = 1;
+			if (Math.random() < 0.8) {
+				for (int i = 0; i < b0; ++i) {
 
-			for (int i = 0; i < b0; ++i) {
-				EntityLawyer entityLawyer = new EntityLawyer(this.worldObj);
-				entityLawyer.setLocationAndAngles(this.posX, this.posY,
-						this.posZ, this.rotationYaw, 0.0F);
-				this.worldObj.spawnEntityInWorld(entityLawyer);
+					EntityLawyer entityLawyer = new EntityLawyer(this.worldObj);
+					entityLawyer.setLocationAndAngles(this.posX, this.posY,
+							this.posZ, this.rotationYaw, 0.0F);
+					this.worldObj.spawnEntityInWorld(entityLawyer);
+				}
+			} else {
+				for (int i = 0; i < b0; ++i) {
+
+					EntityAtsushi entityAtsushi = new EntityAtsushi(this.worldObj);
+					entityAtsushi.setLocationAndAngles(this.posX, this.posY,
+							this.posZ, this.rotationYaw, 0.0F);
+					this.worldObj.spawnEntityInWorld(entityAtsushi);
+				}
 			}
 		}
 

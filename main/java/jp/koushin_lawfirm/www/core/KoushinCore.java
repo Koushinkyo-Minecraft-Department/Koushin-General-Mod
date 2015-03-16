@@ -61,6 +61,9 @@ public class KoushinCore {
 				this, 80, 1, true);
 		EntityRegistry.registerModEntity(Entity6Char.class, "6char", 201, this,
 				128, 5, true);
+		EntityRegistry.registerModEntity(EntityAtsushi.class, "Atsushi", 202,
+				this, 80, 1, true);
+
 
 		// Dispenser登録
 		BlockDispenser.dispenseBehaviorRegistry.putObject(

@@ -1,7 +1,10 @@
 package jp.koushin_lawfirm.www.core;
 
+import jp.koushin_lawfirm.www.entity.EntityAtsushi;
 import jp.koushin_lawfirm.www.entity.EntityLawyer;
 import jp.koushin_lawfirm.www.entity.EntityNukePrimed;
+import jp.koushin_lawfirm.www.entity.ModelAtsushi;
+import jp.koushin_lawfirm.www.entity.RenderAtsushi;
 import jp.koushin_lawfirm.www.entity.RenderLawyer;
 import jp.koushin_lawfirm.www.entity.RenderNukePrimed;
 import net.minecraft.client.model.ModelBiped;
@@ -21,6 +24,9 @@ public class ClientProxy extends CommonProxy {
 				new RenderLawyer(new ModelZombie(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityNukePrimed.class,
 				new RenderNukePrimed());
+		RenderingRegistry.registerEntityRenderingHandler(EntityAtsushi.class,
+				new RenderAtsushi(new ModelAtsushi(), 0.5F));
+
 
 	}
 
