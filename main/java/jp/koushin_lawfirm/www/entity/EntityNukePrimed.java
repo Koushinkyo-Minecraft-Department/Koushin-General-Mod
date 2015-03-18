@@ -49,6 +49,7 @@ public class EntityNukePrimed extends EntityTNTPrimed {
 	}
 
 	private void explode() {
+        worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "random.explode", 4.0F, (1.0F + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F) * 0.7F);
 		float f = 100.0F;
 		this.createNukeExplosion(this, this.posX, this.posY, this.posZ, f,
 				this.worldObj);
